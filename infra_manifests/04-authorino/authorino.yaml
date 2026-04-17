@@ -16,7 +16,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  channel: stable-v1 # Standard channel for the Red Hat build of Authorino
+  channel: stable # Standard channel for the Red Hat build of Authorino
   installPlanApproval: Automatic
   name: authorino-operator
   source: redhat-operators

@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: workshop-infrastructure
+  namespace: openshift-gitops # Standard namespace for ArgoCD
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/parthghetia-rh/workshop-ai-module.git
+        revision: main
+        directories:
+          # This tells ArgoCD to look at every subfolder inside infra_manifests
+          - path: infra_manifests/*
+  template:
+    metadata:
+      # The name of each App will match the subfolder name (e.g., '01-nfd')
+      name: '{{path.basename}}'
+      labels:
+        workshop: ai-module
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/parthghetia-rh/workshop-ai-module.git
+        targetRevision: main
+        # ArgoCD maps the source path directly to the discovered subfolder
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        # We leave namespace blank here because your manifests explicitly define 
+        # their own target namespaces (like 'openshift-nfd')
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          # ServerSideApply is highly recommended for Operators, 
+          # as large CRDs often exceed standard annotation size limits!
+          - ServerSideApply=true

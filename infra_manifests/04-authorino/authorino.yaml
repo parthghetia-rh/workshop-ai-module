@@ -1,12 +1,3 @@
-# 2. OperatorGroup (Required because we are using a specific namespace)
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: authorino-operator-group
-  namespace: openshift-operators
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
----
 # 3. Operator Subscription
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription

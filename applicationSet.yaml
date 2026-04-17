@@ -37,3 +37,4 @@ spec:
           # ServerSideApply is highly recommended for Operators, 
           # as large CRDs often exceed standard annotation size limits!
           - ServerSideApply=true
+          - SkipDryRunOnMissingResource=true

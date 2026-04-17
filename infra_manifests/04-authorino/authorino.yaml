@@ -6,9 +6,6 @@ metadata:
   namespace: openshift-operators
   annotations:
     argocd.argoproj.io/sync-wave: "2"
-spec:
-  targetNamespaces:
-    - openshift-operators
 ---
 # 3. Operator Subscription
 apiVersion: operators.coreos.com/v1alpha1

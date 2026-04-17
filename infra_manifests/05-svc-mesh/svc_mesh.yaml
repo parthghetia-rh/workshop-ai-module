@@ -18,7 +18,7 @@ spec:
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: sailoperator
+  name: servicemeshoperator3
   namespace: openshift-operators
   annotations:
     argocd.argoproj.io/sync-wave: "2"
